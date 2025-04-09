@@ -20,8 +20,8 @@ A web application that converts various document formats to Markdown using the M
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/mrnithesh/Document-to-md.git
-   cd Document-to-md
+   git clone https://github.com/mrnithesh/mark-it-down.git
+   cd mark-it-down
    ```
 
 2. Install the required dependencies:
