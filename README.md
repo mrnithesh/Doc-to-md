@@ -2,7 +2,7 @@
 
 A web application that converts various document formats to Markdown using the MarkItDown library.
 
-![Screenshot](docs/screenshot.png)
+![Screenshot](screenshot.png)
 
 ## Features
 
