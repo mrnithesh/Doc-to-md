@@ -36,8 +36,7 @@ st.title("MarkItDown Document Converter")
 st.write("Convert your documents to Markdown format using the MarkItDown library")
 
 # Supported file types
-supported_files = ["pdf", "docx", "pptx", "xlsx", "xls", "jpg", "jpeg", "png", 
-                  "wav", "mp3", "html", "csv", "json", "xml", "zip", "epub"]
+supported_files = ["pdf", "docx", "pptx", "xlsx", "xls", "html", "csv", "json", "xml", "epub"]
 
 uploaded_file = st.file_uploader("Upload a document to convert", type=supported_files)
 
