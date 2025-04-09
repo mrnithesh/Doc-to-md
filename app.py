@@ -50,11 +50,66 @@ st.markdown("""
         font-size: 0.8rem;
         margin-top: 3rem;
     }
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 1rem;
+    }
+    .social-links a {
+        color: #4169e1;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .sidebar-info {
+        margin-bottom: 20px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # Initialize MarkItDown
 md = MarkItDown()
+
+# Sidebar
+with st.sidebar:
+    st.title("About MarkItDown")
+    
+    st.markdown("### What is MarkItDown?")
+    st.markdown("MarkItDown is a tool that transforms various document formats into clean, readable Markdown format.")
+    
+    st.markdown("### Supported File Types")
+    st.markdown("""
+    - PDF (.pdf)
+    - Word Documents (.docx)
+    - PowerPoint (.pptx)
+    - Excel (.xlsx, .xls)
+    - HTML (.html)
+    - CSV (.csv)
+    - JSON (.json)
+    - XML (.xml)
+    - EPUB (.epub)
+    """)
+    
+    st.markdown("### How to Use")
+    st.markdown("""
+    1. Upload a supported document
+    2. Wait for conversion to complete
+    3. Preview the markdown output
+    4. Download your markdown file
+    """)
+    
+    st.markdown("### Connect with Me")
+    
+
+    
+    st.markdown("[GitHub](https://github.com/mrnithesh)", unsafe_allow_html=True)
+    st.markdown("[LinkedIn](https://linkedin.com/in/mrnithesh)", unsafe_allow_html=True)
+    
+
+    
+    st.markdown("### Developed by")
+    st.markdown("**Mr. Nithesh 💖**")
+    st.markdown("A passionate developer and tech enthusiast.")
 
 def convert_to_markdown(uploaded_file):
     try:
