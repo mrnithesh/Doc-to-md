@@ -3,6 +3,56 @@ import io
 import os
 from markitdown import MarkItDown
 
+# Page configuration
+st.set_page_config(
+    page_title="MarkItDown",
+    page_icon="📝",
+    layout="centered"
+)
+
+# Custom CSS
+st.markdown("""
+<style>
+    .main {
+        padding: 2rem;
+    }
+    .title-container {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .title {
+        font-weight: 800;
+        color: #262730;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+        color: #4F4F4F;
+        margin-bottom: 2rem;
+    }
+    .stButton button {
+        width: 100%;
+        border-radius: 5px;
+        height: 3rem;
+        font-weight: 600;
+        background-color: #4169e1;
+        color: white;
+    }
+    .upload-container {
+        border: 2px dashed #dedede;
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .footer {
+        text-align: center;
+        color: #888888;
+        font-size: 0.8rem;
+        margin-top: 3rem;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Initialize MarkItDown
 md = MarkItDown()
 
@@ -31,32 +81,46 @@ def convert_to_markdown(uploaded_file):
         st.error(f"Error during conversion: {str(e)}")
         return None
 
-# UI
-st.title("MarkItDown Document Converter")
-st.write("Convert your documents to Markdown format using the MarkItDown library")
+# UI Components
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    # Title section
+    st.markdown('<div class="title-container">', unsafe_allow_html=True)
+    st.markdown('<h1 class="title">MarkItDown 📝</h1>', unsafe_allow_html=True)
+    st.markdown('<p class="subtitle">Transform your documents into clean Markdown format</p>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Supported file types
-supported_files = ["pdf", "docx", "pptx", "xlsx", "xls", "html", "csv", "json", "xml", "epub"]
-
-uploaded_file = st.file_uploader("Upload a document to convert", type=supported_files)
-
-if uploaded_file is not None:
-    st.write(f"Processing: **{uploaded_file.name}**")
+    # Supported file types
+    supported_files = ["pdf", "docx", "pptx", "xlsx", "xls", "html", "csv", "json", "xml", "epub"]
     
-    with st.spinner("Converting to Markdown..."):
-        markdown_text = convert_to_markdown(uploaded_file)
+    # Upload section
+    st.markdown('<div class="upload-container">', unsafe_allow_html=True)
+    uploaded_file = st.file_uploader("", type=supported_files)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    if uploaded_file is not None:
+        # Processing section
+        st.markdown(f"**{uploaded_file.name}**")
+        
+        with st.spinner("Converting to Markdown..."):
+            markdown_text = convert_to_markdown(uploaded_file)
+        
+        if markdown_text:
+            # Result section
+            st.success("Conversion successful!")
+            
+            # Download button for the markdown file
+            st.download_button(
+                label="Download Markdown",
+                data=markdown_text,
+                file_name=f"{os.path.splitext(uploaded_file.name)[0]}.md",
+                mime="text/markdown"
+            )
+            
+            # Display the markdown in a clean container
+            with st.expander("Preview Markdown", expanded=True):
+                st.markdown(markdown_text)
     
-    if markdown_text:
-        # Download button for the markdown file
-        st.download_button(
-            label="Download Markdown",
-            data=markdown_text,
-            file_name=f"{os.path.splitext(uploaded_file.name)[0]}.md",
-            mime="text/markdown"
-        )
-        
-        # Display the markdown
-        st.subheader("Converted Markdown:")
-        st.markdown(markdown_text)
-        
-        
+    # Footer
+    st.markdown('<div class="footer">Created by Mr. Nithesh 💖</div>', unsafe_allow_html=True)
+
